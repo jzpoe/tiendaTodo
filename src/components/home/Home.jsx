@@ -1,5 +1,3 @@
-
-
 import "./home.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -33,7 +31,9 @@ export const Home = () => {
       });
 
       if (result.isConfirmed) {
-        const response = await axios.delete(`http://localhost:3000/api/delete/${id}`);
+        const response = await axios.delete(
+          `http://localhost:3000/api/delete/${id}`
+        );
         Swal.fire({
           icon: "success",
           title: "¡Imagen eliminada!",
@@ -43,7 +43,7 @@ export const Home = () => {
         renderImagen();
       }
     } catch (error) {
-      console.error('Error al eliminar la imagen:', error);
+      console.error("Error al eliminar la imagen:", error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -53,16 +53,34 @@ export const Home = () => {
   };
 
   return (
-    <div className="container-image">
-      <div className="image-grid">
-        {imagenGet.map((imagen) => (
-          <div key={imagen._id} className="image-item-container">
-            {/* Utiliza la URL relativa del servidor para la imagen */}
-            <img src={`http://localhost:3000/${imagen.imageUrl}`} alt={imagen.description} className="image-item" />
-            <p>{imagen.description}</p>
-            <button onClick={() => handleEliminarImagen(imagen._id)} className="delete-button">Eliminar</button>
-          </div>
-        ))}
+    <div>
+      <header className="container-header">
+        <img
+          src="/imgHeader/mujer-mostrando-mano-mini-casa-concepto-inmobiliario-ai-generativo.jpg"
+          alt="mujer-mostrando-mano-mini-casa-concepto-inmobiliario-ai-generativo.jpg"
+        />
+      </header>
+
+      <div className="container-image">
+        <div className="image-grid">
+          {imagenGet.map((imagen) => (
+            <div key={imagen._id} className="image-item-container">
+              {/* Utiliza la URL relativa del servidor para la imagen */}
+              <img
+                src={`http://localhost:3000/${imagen.imageUrl}`}
+                alt={imagen.description}
+                className="image-item"
+              />
+              <p>{imagen.description}</p>
+              <button
+                onClick={() => handleEliminarImagen(imagen._id)}
+                className="delete-button"
+              >
+                Eliminar
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

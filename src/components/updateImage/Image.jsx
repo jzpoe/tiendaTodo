@@ -1,5 +1,5 @@
 
-
+import './image.css'
 import axios from "axios";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -12,6 +12,7 @@ export const Image = () => {
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
+  
 
   const uploadImageName = (e) => {
     setDescription(e.target.value);
@@ -33,8 +34,10 @@ export const Image = () => {
         Swal.fire({
           icon: "success",
           title: "¡Imagen subida al servidor!",
-          text: response.data.message, // Debes usar response.data para acceder al mensaje del servidor
+          text: response.data.message,
         });
+         // Limpiar el input file después de subir la imagen
+         setImage(null);
       } else {
         Swal.fire({
           icon: "error",
@@ -49,16 +52,25 @@ export const Image = () => {
   };
 
   return (
-    <div className="container-admin">
-      <label htmlFor="">Selecciona una imagen</label>
-      <input type="file" onChange={handleImageChange} />
-      <input
-        type="text"
-        value={description}
-        onChange={uploadImageName}
-        placeholder="Agrega una descripción"
-      />
-      <button onClick={handleImage}>Enviar</button>
+    <div className="image-upload-container">
+      <div className="image-preview">
+        {image && <img src={URL.createObjectURL(image)} alt="Preview" />}
+      </div>
+      <div className="image-form">
+        <label htmlFor="image-upload" className="custom-file-upload">
+          <i className="fas fa-cloud-upload-alt"></i> Selecciona una imagen
+        </label>
+        <input type="file" id="image-upload" onChange={handleImageChange} />
+        <input
+          type="text"
+          value={description}
+          onChange={uploadImageName}
+          placeholder="Agrega una descripción"
+          className="input-description"
+        />
+        <button onClick={handleImage} className="submit-button">Enviar</button>
+        {error && <div className="error-message">{error}</div>}
+      </div>
     </div>
   );
 };
