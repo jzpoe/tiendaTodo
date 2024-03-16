@@ -1,0 +1,13 @@
+.container-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Altura del header del 80% del viewport height */
+    background-color: #333; /* Color de fondo del header */
+  }
+  
+  .container-header img {
+    width: 90%; /* La imagen ocupará el 100% del ancho del contenedor */
+    height: 100%; /* La imagen ocupará el 100% de la altura del contenedor */
+    object-fit:fill; /* Hace que la imagen cubra todo el espacio del contenedor, manteniendo su relación de aspecto */
+  }

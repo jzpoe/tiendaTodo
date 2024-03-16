@@ -1,0 +1,16 @@
+.container-image {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Cuadrícula de imágenes responsiva */
+    gap: 20px;
+  }
+  
+  .image-item {
+    max-width: 100%; /* La imagen no superará el ancho del contenedor */
+    height: auto; /* La altura se ajustará automáticamente según el ancho */
+  }
